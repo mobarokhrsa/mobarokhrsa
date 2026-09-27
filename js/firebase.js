@@ -9,7 +9,7 @@ import { initializeApp } from
 // ======================================== 
 // Firebase Auth 
 // ========================================
-import { getAuth } from 
+import { getAuth, GoogleAuthProvider } from 
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
@@ -37,7 +37,15 @@ const app = initializeApp(firebaseConfig);
 // Initilize Auth
 const auth = getAuth(app);
 
+
+// ========================================
+// Google Provider
+// ========================================
+
+const googleProvider = new GoogleAuthProvider();
+
+
 // Export 
-export {app, auth};
+export {app, auth, googleProvider};
 
 
