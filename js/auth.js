@@ -1,99 +1,52 @@
-// This file will handle:
 
-// Email/password signup
-// Email/password login
-// Google redirect login
-// Google redirect signup
-// Logout
-// Detecting the logged-in user
-// Handling the Google redirect result
-// Redirecting users after authentication
 
 // ========================================
-// Authentication
+// Firebase Authentication
 // ========================================
-
-import {
-    auth,
-    googleProvider
-} from "./firebase.js";
 
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signInWithRedirect,
-    getRedirectResult,
+    GoogleAuthProvider,
+    signInWithPopup,
     onAuthStateChanged,
-    signOut,
-    updateProfile
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    updateProfile,
+    sendPasswordResetEmail,
+    signOut
+} from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
-// ========================================
-// Page Detection
-// ========================================
+// Import Firebase Auth instance
 
-const currentPage =
-    window.location.pathname.split("/").pop();
-
-
-// ========================================
-// Elements
-// ========================================
-
-const loginForm =
-    document.getElementById("login-form");
-
-const signupForm =
-    document.getElementById("signup-form");
-
-const googleLoginButton =
-    document.getElementById("google-login");
-
-const googleSignupButton =
-    document.getElementById("google-signup");
-
-
-// ========================================
-// Messages
-// ========================================
-
-const loginError =
-    document.getElementById("login-error");
-
-const loginSuccess =
-    document.getElementById("login-success");
-
-const signupError =
-    document.getElementById("signup-error");
-
-const signupSuccess =
-    document.getElementById("signup-success");
+import { auth } from "./firebase.js";
 
 
 // ========================================
 // Helper Functions
 // ========================================
 
-function showMessage(element, message) {
+function showError(element, message) {
 
-    if (!element) {
-        return;
-    }
+    if (!element) return;
 
     element.textContent = message;
+    element.style.display = "block";
+}
 
+
+function showSuccess(element, message) {
+
+    if (!element) return;
+
+    element.textContent = message;
     element.style.display = "block";
 }
 
 
 function hideMessage(element) {
 
-    if (!element) {
-        return;
-    }
-
-    element.textContent = "";
+    if (!element) return;
 
     element.style.display = "none";
 }
@@ -103,154 +56,48 @@ function hideMessage(element) {
 // Firebase Error Messages
 // ========================================
 
-function getFirebaseErrorMessage(error) {
+function getAuthErrorMessage(errorCode) {
 
-    switch (error.code) {
+    switch (errorCode) {
+
+        case "auth/email-already-in-use":
+            return "এই ইমেইল দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট আছে।";
 
         case "auth/invalid-email":
             return "ইমেইল ঠিকানাটি সঠিক নয়।";
+
+        case "auth/weak-password":
+            return "পাসওয়ার্ড আরও শক্তিশালী করুন।";
 
         case "auth/user-not-found":
             return "এই ইমেইল দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি।";
 
         case "auth/wrong-password":
-            return "পাসওয়ার্ড সঠিক নয়।";
-
         case "auth/invalid-credential":
             return "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।";
 
-        case "auth/email-already-in-use":
-            return "এই ইমেইল দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট রয়েছে।";
+        case "auth/popup-closed-by-user":
+            return "Google login window বন্ধ করা হয়েছে।";
 
-        case "auth/weak-password":
-            return "পাসওয়ার্ড আরও শক্তিশালী করুন।";
+        case "auth/popup-blocked":
+            return "আপনার ব্রাউজার popup বন্ধ করে দিয়েছে।";
 
         case "auth/network-request-failed":
             return "ইন্টারনেট সংযোগ পরীক্ষা করুন।";
 
-        case "auth/popup-closed-by-user":
-            return "Google login বাতিল করা হয়েছে।";
-
-        case "auth/operation-not-allowed":
-            return "এই authentication method Firebase-এ চালু করা হয়নি।";
-
         default:
-            console.error(error);
-
             return "কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।";
     }
 }
 
 
 // ========================================
-// LOGIN
+// SIGN UP
 // ========================================
 
-if (loginForm) {
+const signupForm =
+    document.getElementById("signup-form");
 
-    loginForm.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
-
-            hideMessage(loginError);
-            hideMessage(loginSuccess);
-
-
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
-
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
-
-
-            if (!email || !password) {
-
-                showMessage(
-                    loginError,
-                    "ইমেইল এবং পাসওয়ার্ড দিন।"
-                );
-
-                return;
-            }
-
-
-            const loginButton =
-                document.getElementById(
-                    "login-button"
-                );
-
-            const buttonText =
-                document.getElementById(
-                    "login-button-text"
-                );
-
-            const spinner =
-                document.getElementById(
-                    "login-spinner"
-                );
-
-
-            try {
-
-                loginButton.disabled = true;
-
-                buttonText.textContent =
-                    "লগইন হচ্ছে...";
-
-                spinner.style.display =
-                    "block";
-
-
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-
-                showMessage(
-                    loginSuccess,
-                    "লগইন সফল হয়েছে।"
-                );
-
-
-                window.location.href =
-                    "../index.html";
-
-
-            } catch (error) {
-
-                showMessage(
-                    loginError,
-                    getFirebaseErrorMessage(error)
-                );
-
-
-                loginButton.disabled = false;
-
-                buttonText.textContent =
-                    "লগইন করুন";
-
-                spinner.style.display =
-                    "none";
-            }
-
-        }
-    );
-
-}
-
-
-// ========================================
-// SIGNUP
-// ========================================
 
 if (signupForm) {
 
@@ -260,9 +107,6 @@ if (signupForm) {
 
             event.preventDefault();
 
-            hideMessage(signupError);
-            hideMessage(signupSuccess);
-
 
             const name =
                 document
@@ -270,47 +114,61 @@ if (signupForm) {
                     .value
                     .trim();
 
+
             const email =
                 document
                     .getElementById("email")
                     .value
                     .trim();
 
+
             const password =
                 document
                     .getElementById("password")
                     .value;
+
 
             const confirmPassword =
                 document
                     .getElementById("confirm-password")
                     .value;
 
-            const terms =
-                document
-                    .getElementById("terms")
-                    .checked;
+
+            const errorElement =
+                document.getElementById(
+                    "signup-error"
+                );
 
 
-            // ----------------------------
-            // Validation
-            // ----------------------------
+            const successElement =
+                document.getElementById(
+                    "signup-success"
+                );
 
-            if (!name || !email || !password) {
 
-                showMessage(
-                    signupError,
-                    "সবগুলো ঘর পূরণ করুন।"
+            hideMessage(errorElement);
+            hideMessage(successElement);
+
+
+            // Validate name
+
+            if (!name) {
+
+                showError(
+                    errorElement,
+                    "আপনার নাম লিখুন।"
                 );
 
                 return;
             }
 
 
+            // Validate password
+
             if (password.length < 6) {
 
-                showMessage(
-                    signupError,
+                showError(
+                    errorElement,
                     "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।"
                 );
 
@@ -318,10 +176,12 @@ if (signupForm) {
             }
 
 
+            // Confirm password
+
             if (password !== confirmPassword) {
 
-                showMessage(
-                    signupError,
+                showError(
+                    errorElement,
                     "দুটি পাসওয়ার্ড একই নয়।"
                 );
 
@@ -329,47 +189,9 @@ if (signupForm) {
             }
 
 
-            if (!terms) {
-
-                showMessage(
-                    signupError,
-                    "ব্যবহারের শর্তাবলিতে সম্মতি দিন।"
-                );
-
-                return;
-            }
-
-
-            const signupButton =
-                document.getElementById(
-                    "signup-button"
-                );
-
-            const buttonText =
-                document.getElementById(
-                    "signup-button-text"
-                );
-
-            const spinner =
-                document.getElementById(
-                    "signup-spinner"
-                );
-
-
             try {
 
-                signupButton.disabled = true;
-
-                buttonText.textContent =
-                    "অ্যাকাউন্ট তৈরি হচ্ছে...";
-
-                spinner.style.display =
-                    "block";
-
-
-                // ----------------------------
-                // Create Firebase User
-                // ----------------------------
+                // Create Firebase user
 
                 const userCredential =
                     await createUserWithEmailAndPassword(
@@ -383,9 +205,7 @@ if (signupForm) {
                     userCredential.user;
 
 
-                // ----------------------------
-                // Save Display Name
-                // ----------------------------
+                // Save display name
 
                 await updateProfile(
                     user,
@@ -395,87 +215,29 @@ if (signupForm) {
                 );
 
 
-                showMessage(
-                    signupSuccess,
-                    "অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে।"
+                showSuccess(
+                    successElement,
+                    "অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!"
                 );
 
 
-                // ----------------------------
-                // Redirect Home
-                // ----------------------------
+                // Redirect to home
 
-                window.location.href =
-                    "../index.html";
+                setTimeout(() => {
 
+                    window.location.href =
+                        "../index.html";
 
-            } catch (error) {
-
-                showMessage(
-                    signupError,
-                    getFirebaseErrorMessage(error)
-                );
-
-
-                signupButton.disabled = false;
-
-                buttonText.textContent =
-                    "অ্যাকাউন্ট তৈরি করুন";
-
-                spinner.style.display =
-                    "none";
-            }
-
-        }
-    );
-
-}
-
-
-// ========================================
-// GOOGLE LOGIN
-// ========================================
-
-if (googleLoginButton) {
-
-    googleLoginButton.addEventListener(
-        "click",
-        async () => {
-
-            hideMessage(loginError);
-            hideMessage(loginSuccess);
-
-
-            try {
-
-                googleLoginButton.disabled =
-                    true;
-
-
-                /*
-                 * IMPORTANT:
-                 *
-                 * This is REDIRECT authentication.
-                 *
-                 * It does NOT open a popup.
-                 */
-
-                await signInWithRedirect(
-                    auth,
-                    googleProvider
-                );
+                }, 1200);
 
 
             } catch (error) {
 
                 console.error(error);
 
-                googleLoginButton.disabled =
-                    false;
-
-                showMessage(
-                    loginError,
-                    getFirebaseErrorMessage(error)
+                showError(
+                    errorElement,
+                    getAuthErrorMessage(error.code)
                 );
 
             }
@@ -487,49 +249,94 @@ if (googleLoginButton) {
 
 
 // ========================================
-// GOOGLE SIGNUP
+// LOGIN
 // ========================================
 
-if (googleSignupButton) {
+const loginForm =
+    document.getElementById("login-form");
 
-    googleSignupButton.addEventListener(
-        "click",
-        async () => {
 
-            hideMessage(signupError);
-            hideMessage(signupSuccess);
+if (loginForm) {
+
+    loginForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const errorElement =
+                document.getElementById(
+                    "login-error"
+                );
+
+
+            const successElement =
+                document.getElementById(
+                    "login-success"
+                );
+
+
+            hideMessage(errorElement);
+            hideMessage(successElement);
+
+
+            if (!email || !password) {
+
+                showError(
+                    errorElement,
+                    "ইমেইল এবং পাসওয়ার্ড দিন।"
+                );
+
+                return;
+            }
 
 
             try {
 
-                googleSignupButton.disabled =
-                    true;
-
-
-                /*
-                 * Same Google redirect flow.
-                 *
-                 * Firebase automatically creates
-                 * the account if the Google user
-                 * doesn't already exist.
-                 */
-
-                await signInWithRedirect(
+                await signInWithEmailAndPassword(
                     auth,
-                    googleProvider
+                    email,
+                    password
                 );
+
+
+                showSuccess(
+                    successElement,
+                    "লগইন সফল হয়েছে!"
+                );
+
+
+                // Redirect home
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "../index.html";
+
+                }, 700);
 
 
             } catch (error) {
 
                 console.error(error);
 
-                googleSignupButton.disabled =
-                    false;
-
-                showMessage(
-                    signupError,
-                    getFirebaseErrorMessage(error)
+                showError(
+                    errorElement,
+                    getAuthErrorMessage(error.code)
                 );
 
             }
@@ -541,75 +348,73 @@ if (googleSignupButton) {
 
 
 // ========================================
-// HANDLE GOOGLE REDIRECT RESULT
+// GOOGLE LOGIN / SIGNUP
 // ========================================
 
-async function handleGoogleRedirect() {
+const googleLoginButton =
+    document.getElementById("google-login");
+
+
+const googleSignupButton =
+    document.getElementById("google-signup");
+
+
+async function loginWithGoogle() {
+
+    const provider =
+        new GoogleAuthProvider();
+
 
     try {
 
-        const result =
-            await getRedirectResult(auth);
-
-
-        if (!result) {
-            return;
-        }
-
-
-        const user =
-            result.user;
-
-
-        console.log(
-            "Google login successful:",
-            user
+        await signInWithPopup(
+            auth,
+            provider
         );
 
 
-        /*
-         * User is now authenticated.
-         *
-         * Redirect to home page.
-         */
+        // Google authentication succeeded
 
-        if (
-            currentPage === "login.html" ||
-            currentPage === "signup.html"
-        ) {
-
-            window.location.href =
-                "../index.html";
-        }
+        window.location.href =
+            "../index.html";
 
 
     } catch (error) {
 
-        console.error(
-            "Google redirect error:",
-            error
-        );
+        console.error(error);
 
 
-        const errorMessage =
-            getFirebaseErrorMessage(error);
+        const errorElement =
+            document.getElementById(
+                "login-error"
+            );
 
 
-        if (currentPage === "login.html") {
+        const signupErrorElement =
+            document.getElementById(
+                "signup-error"
+            );
 
-            showMessage(
-                loginError,
-                errorMessage
+
+        const message =
+            getAuthErrorMessage(error.code);
+
+
+        if (errorElement) {
+
+            showError(
+                errorElement,
+                message
             );
 
         }
 
 
-        if (currentPage === "signup.html") {
+        if (signupErrorElement) {
 
-            showMessage(
-                signupError,
-                errorMessage
+            showError(
+                signupErrorElement,
+                message
             );
 
         }
@@ -619,7 +424,112 @@ async function handleGoogleRedirect() {
 }
 
 
-handleGoogleRedirect();
+// Login page Google button
+
+if (googleLoginButton) {
+
+    googleLoginButton.addEventListener(
+        "click",
+        loginWithGoogle
+    );
+
+}
+
+
+// Signup page Google button
+
+if (googleSignupButton) {
+
+    googleSignupButton.addEventListener(
+        "click",
+        loginWithGoogle
+    );
+
+}
+
+
+// ========================================
+// FORGOT PASSWORD
+// ========================================
+
+const forgotPassword =
+    document.getElementById(
+        "forgot-password"
+    );
+
+
+if (forgotPassword) {
+
+    forgotPassword.addEventListener(
+        "click",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const errorElement =
+                document.getElementById(
+                    "login-error"
+                );
+
+
+            const successElement =
+                document.getElementById(
+                    "login-success"
+                );
+
+
+            hideMessage(errorElement);
+            hideMessage(successElement);
+
+
+            if (!email) {
+
+                showError(
+                    errorElement,
+                    "প্রথমে আপনার ইমেইল লিখুন।"
+                );
+
+                return;
+            }
+
+
+            try {
+
+                await sendPasswordResetEmail(
+                    auth,
+                    email
+                );
+
+
+                showSuccess(
+                    successElement,
+                    "পাসওয়ার্ড পরিবর্তনের লিংক আপনার ইমেইলে পাঠানো হয়েছে।"
+                );
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                showError(
+                    errorElement,
+                    getAuthErrorMessage(error.code)
+                );
+
+            }
+
+        }
+    );
+
+}
 
 
 // ========================================
@@ -634,13 +544,23 @@ onAuthStateChanged(
 
             console.log(
                 "Logged in user:",
+                user.uid
+            );
+
+            console.log(
+                "Email:",
                 user.email
+            );
+
+            console.log(
+                "Name:",
+                user.displayName
             );
 
         } else {
 
             console.log(
-                "No user is logged in."
+                "No user is currently logged in."
             );
 
         }
@@ -653,14 +573,14 @@ onAuthStateChanged(
 // LOGOUT FUNCTION
 // ========================================
 
-async function logoutUser() {
+export async function logoutUser() {
 
     try {
 
         await signOut(auth);
 
         window.location.href =
-            "pages/login.html";
+            "login.html";
 
     } catch (error) {
 
@@ -672,8 +592,3 @@ async function logoutUser() {
     }
 
 }
-
-
-// Make logout available globally
-
-window.logoutUser = logoutUser;
