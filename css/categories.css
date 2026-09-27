@@ -1,0 +1,336 @@
+/* ========================================
+   Category Hero
+======================================== */
+
+.category-hero {
+    padding: 65px 0 55px;
+    background: linear-gradient(
+        135deg,
+        #f0fdf8 0%,
+        #ffffff 70%
+    );
+}
+
+
+.category-hero-content {
+    max-width: 750px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+.page-badge {
+    display: inline-block;
+    padding: 7px 15px;
+    border-radius: 50px;
+    background: #dff7ed;
+    color: #087f5b;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+
+.category-hero h1 {
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.25;
+    color: #172033;
+    margin-bottom: 18px;
+}
+
+
+.category-hero h1 span {
+    color: #087f5b;
+}
+
+
+.category-hero p {
+    color: #687386;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+
+/* ========================================
+   Category Section
+======================================== */
+
+.category-section {
+    padding: 55px 0 90px;
+}
+
+
+/* ========================================
+   Search
+======================================== */
+
+.search-box {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    background: #ffffff;
+    border: 1px solid #dfe5e9;
+    border-radius: 12px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    padding: 0 17px;
+    transition: 0.2s;
+}
+
+
+.search-box:focus-within {
+    border-color: #087f5b;
+    box-shadow: 0 0 0 3px rgba(8, 127, 91, 0.08);
+}
+
+
+.search-icon {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+
+.search-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 15px;
+    color: #172033;
+}
+
+
+.search-box input::placeholder {
+    color: #9aa3b1;
+}
+
+
+/* ========================================
+   Category Grid
+======================================== */
+
+.category-page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+/* ========================================
+   Category Card
+======================================== */
+
+.large-category-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 18px;
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #e4e9ed;
+    border-radius: 16px;
+    transition: 0.25s ease;
+}
+
+
+.large-category-card:hover {
+    border-color: #b8dfd1;
+    box-shadow: 0 12px 35px rgba(20, 40, 35, 0.08);
+    transform: translateY(-3px);
+}
+
+
+/* ========================================
+   Category Icon
+======================================== */
+
+.large-category-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef9f5;
+    border-radius: 14px;
+    font-size: 27px;
+    grid-row: span 2;
+}
+
+
+/* ========================================
+   Category Info
+======================================== */
+
+.category-info {
+    min-width: 0;
+}
+
+
+.category-number {
+    color: #087f5b;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+.category-info h2 {
+    color: #172033;
+    font-size: 19px;
+    margin: 3px 0 7px;
+}
+
+
+.category-info p {
+    color: #748093;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 13px;
+}
+
+
+.category-meta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+
+.category-meta span {
+    color: #7b8595;
+    font-size: 12px;
+}
+
+
+/* ========================================
+   Study Button
+======================================== */
+
+.category-study {
+    grid-column: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin-top: 18px;
+    padding: 8px 13px;
+    border-radius: 7px;
+    background: #eaf8f2;
+    color: #087f5b;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+
+.category-study:hover {
+    background: #087f5b;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   No Results
+======================================== */
+
+.no-results {
+    display: none;
+    text-align: center;
+    padding: 70px 20px;
+}
+
+
+.no-results > div {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+
+.no-results h3 {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+
+.no-results p {
+    color: #7a8596;
+    font-size: 14px;
+}
+
+
+/* ========================================
+   Responsive
+======================================== */
+
+@media (max-width: 850px) {
+
+    .category-page-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .category-hero {
+        padding: 45px 0;
+    }
+
+
+    .category-hero h1 {
+        font-size: 34px;
+    }
+
+
+    .category-section {
+        padding-top: 35px;
+    }
+
+
+    .large-category-card {
+        padding: 20px;
+    }
+
+
+    .large-category-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 23px;
+    }
+
+
+    .category-info h2 {
+        font-size: 17px;
+    }
+
+
+    .category-info p {
+        font-size: 12px;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .large-category-card {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+
+    .large-category-icon {
+        grid-row: auto;
+    }
+
+
+    .category-study {
+        grid-column: 1;
+        width: 100%;
+    }
+
+}

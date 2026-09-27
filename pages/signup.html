@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="আরবি শিখি - নতুন অ্যাকাউন্ট তৈরি করুন">
+
+    <title>অ্যাকাউন্ট তৈরি করুন — আরবি শিখি</title>
+
+    <link rel="stylesheet" href="../css/signup.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         Main Signup Page
+    ========================== -->
+
+    <main class="auth-page">
+
+        <div class="auth-container">
+
+            <!-- =========================
+                 Left Side
+            ========================== -->
+
+            <section class="auth-info">
+
+                <a href="../index.html" class="brand">
+
+                    <span class="brand-arabic">
+                        عربي
+                    </span>
+
+                    <span class="brand-name">
+                        আরবি শিখি
+                    </span>
+
+                </a>
+
+
+                <div class="info-content">
+
+                    <span class="info-badge">
+                        🇧🇩 বাংলাভাষীদের জন্য
+                    </span>
+
+                    <h1>
+                        আজ থেকেই
+                        <span>আরবি শেখা শুরু করুন</span>
+                    </h1>
+
+                    <p>
+                        একটি বিনামূল্যের অ্যাকাউন্ট তৈরি করুন এবং
+                        আপনার শেখার অগ্রগতি সংরক্ষণ করুন।
+                    </p>
+
+
+                    <div class="benefits">
+
+                        <div class="benefit">
+
+                            <span class="benefit-icon">
+                                ✓
+                            </span>
+
+                            <span>
+                                ব্যক্তিগত শব্দভাণ্ডার তৈরি করুন
+                            </span>
+
+                        </div>
+
+
+                        <div class="benefit">
+
+                            <span class="benefit-icon">
+                                ✓
+                            </span>
+
+                            <span>
+                                ফ্ল্যাশকার্ড দিয়ে অনুশীলন করুন
+                            </span>
+
+                        </div>
+
+
+                        <div class="benefit">
+
+                            <span class="benefit-icon">
+                                ✓
+                            </span>
+
+                            <span>
+                                আপনার শেখার অগ্রগতি সংরক্ষণ করুন
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Arabic Example -->
+
+                    <div class="arabic-example">
+
+                        <div class="example-arabic">
+                            تَعَلَّمْ كُلَّ يَوْمٍ
+                        </div>
+
+                        <div class="example-pronunciation">
+                            উচ্চারণ: তা'আল্লাম কুল্লা ইয়াওমিন
+                        </div>
+
+                        <div class="example-meaning">
+                            প্রতিদিন শিখুন।
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 Right Side
+            ========================== -->
+
+            <section class="auth-form-section">
+
+                <div class="auth-form-container">
+
+                    <div class="form-header">
+
+                        <h2>
+                            অ্যাকাউন্ট তৈরি করুন ✨
+                        </h2>
+
+                        <p>
+                            কয়েকটি তথ্য দিয়ে শুরু করুন
+                        </p>
+
+                    </div>
+
+
+                    <!-- Error Message -->
+
+                    <div id="signup-error"
+                         class="message error-message"
+                         role="alert">
+                    </div>
+
+
+                    <!-- Success Message -->
+
+                    <div id="signup-success"
+                         class="message success-message"
+                         role="status">
+                    </div>
+
+
+                    <!-- Signup Form -->
+
+                    <form id="signup-form">
+
+                        <!-- Name -->
+
+                        <div class="form-group">
+
+                            <label for="name">
+                                আপনার নাম
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    👤
+                                </span>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="আপনার নাম লিখুন"
+                                    autocomplete="name"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                ইমেইল
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    ✉
+                                </span>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="আপনার ইমেইল লিখুন"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Password -->
+
+                        <div class="form-group">
+
+                            <label for="password">
+                                পাসওয়ার্ড
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🔒
+                                </span>
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="কমপক্ষে ৬ অক্ষর"
+                                    autocomplete="new-password"
+                                    minlength="6"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    id="toggle-password"
+                                    class="password-toggle"
+                                    aria-label="পাসওয়ার্ড দেখুন">
+                                    👁
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Confirm Password -->
+
+                        <div class="form-group">
+
+                            <label for="confirm-password">
+                                পাসওয়ার্ড আবার লিখুন
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🔐
+                                </span>
+
+                                <input
+                                    type="password"
+                                    id="confirm-password"
+                                    name="confirm-password"
+                                    placeholder="পাসওয়ার্ডটি আবার লিখুন"
+                                    autocomplete="new-password"
+                                    minlength="6"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    id="toggle-confirm-password"
+                                    class="password-toggle"
+                                    aria-label="পাসওয়ার্ড দেখুন">
+                                    👁
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Terms -->
+
+                        <div class="terms-row">
+
+                            <label class="checkbox-label">
+
+                                <input
+                                    type="checkbox"
+                                    id="terms"
+                                    name="terms"
+                                    required
+                                >
+
+                                <span>
+                                    আমি
+                                    <a href="#">
+                                        ব্যবহারের শর্তাবলি
+                                    </a>
+                                    এবং
+                                    <a href="#">
+                                        গোপনীয়তা নীতি
+                                    </a>
+                                    মেনে নিচ্ছি।
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- Signup Button -->
+
+                        <button
+                            type="submit"
+                            id="signup-button"
+                            class="signup-button">
+
+                            <span id="signup-button-text">
+                                অ্যাকাউন্ট তৈরি করুন
+                            </span>
+
+                            <span
+                                id="signup-spinner"
+                                class="spinner">
+                            </span>
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- Divider -->
+
+                    <div class="divider">
+
+                        <span>অথবা</span>
+
+                    </div>
+
+
+                    <!-- Google Signup -->
+
+                    <button
+                        type="button"
+                        id="google-signup"
+                        class="google-button">
+
+                        <span class="google-icon">
+                            G
+                        </span>
+
+                        Google দিয়ে অ্যাকাউন্ট তৈরি করুন
+
+                    </button>
+
+
+                    <!-- Login -->
+
+                    <p class="login-text">
+
+                        ইতিমধ্যে আপনার অ্যাকাউন্ট আছে?
+
+                        <a href="login.html">
+                            লগইন করুন
+                        </a>
+
+                    </p>
+
+
+                    <!-- Home -->
+
+                    <a href="../index.html"
+                       class="back-home">
+
+                        ← হোম পেজে ফিরে যান
+
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         Signup JavaScript
+         Firebase will be added later
+    ========================== -->
+
+<script type="module" src="../js/auth.js"></script>
+
+</body>
+
+</html>

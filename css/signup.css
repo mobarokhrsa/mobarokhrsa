@@ -1,0 +1,943 @@
+/* ========================================
+   Google Fonts
+======================================== */
+
+@import url(
+    'https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap'
+);
+
+
+/* ========================================
+   Reset
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    min-height: 100%;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "Noto Sans Bengali",
+        sans-serif;
+
+    background: #f4f8f6;
+
+    color: #172033;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* ========================================
+   Main Page
+======================================== */
+
+.auth-page {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eefaf5 0%,
+            #f8fafc 50%,
+            #eef7f3 100%
+        );
+}
+
+
+/* ========================================
+   Main Container
+======================================== */
+
+.auth-container {
+    width: min(1100px, 100%);
+
+    min-height: 720px;
+
+    display: grid;
+
+    grid-template-columns:
+        0.95fr 1.05fr;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 70px
+        rgba(20, 50, 40, 0.12);
+}
+
+
+/* ========================================
+   Left Side
+======================================== */
+
+.auth-info {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 45px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #087f5b,
+            #056b4d
+        );
+
+    overflow: hidden;
+}
+
+
+.auth-info::before {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    top: -120px;
+    right: -90px;
+}
+
+
+.auth-info::after {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    bottom: -80px;
+    left: -70px;
+}
+
+
+/* ========================================
+   Brand
+======================================== */
+
+.brand {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    width: fit-content;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.brand-arabic {
+    font-family:
+        "Noto Sans Arabic",
+        sans-serif;
+
+    font-size: 24px;
+}
+
+
+/* ========================================
+   Info Content
+======================================== */
+
+.info-content {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: auto;
+
+    margin-bottom: auto;
+}
+
+
+.info-badge {
+    display: inline-block;
+
+    padding: 7px 13px;
+
+    margin-bottom: 20px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255, 255, 255, 0.13);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.info-content h1 {
+    max-width: 430px;
+
+    font-size: 37px;
+
+    line-height: 1.4;
+
+    margin-bottom: 15px;
+}
+
+
+.info-content h1 span {
+    display: block;
+
+    color: #d9fff0;
+}
+
+
+.info-content > p {
+    max-width: 420px;
+
+    color:
+        rgba(255, 255, 255, 0.82);
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    margin-bottom: 25px;
+}
+
+
+/* ========================================
+   Benefits
+======================================== */
+
+.benefits {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 28px;
+}
+
+
+.benefit {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color:
+        rgba(255, 255, 255, 0.90);
+
+    font-size: 13px;
+}
+
+
+.benefit-icon {
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+/* ========================================
+   Arabic Example
+======================================== */
+
+.arabic-example {
+    max-width: 420px;
+
+    padding: 18px 20px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+}
+
+
+.example-arabic {
+    direction: rtl;
+
+    font-family:
+        "Noto Sans Arabic",
+        sans-serif;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    margin-bottom: 3px;
+}
+
+
+.example-pronunciation {
+    color:
+        rgba(255, 255, 255, 0.68);
+
+    font-size: 11px;
+
+    margin-bottom: 7px;
+}
+
+
+.example-meaning {
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   Right Side
+======================================== */
+
+.auth-form-section {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 45px 55px;
+
+    background: #ffffff;
+}
+
+
+.auth-form-container {
+    width: 100%;
+
+    max-width: 430px;
+}
+
+
+/* ========================================
+   Form Header
+======================================== */
+
+.form-header {
+    margin-bottom: 25px;
+}
+
+
+.form-header h2 {
+    font-size: 29px;
+
+    line-height: 1.4;
+
+    margin-bottom: 5px;
+}
+
+
+.form-header p {
+    color: #7a8596;
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   Messages
+======================================== */
+
+.message {
+    display: none;
+
+    padding: 11px 14px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-bottom: 18px;
+}
+
+
+.error-message {
+    color: #a12b2b;
+
+    background: #fff0f0;
+
+    border:
+        1px solid #ffd5d5;
+}
+
+
+.success-message {
+    color: #176b4f;
+
+    background: #edf9f4;
+
+    border:
+        1px solid #ccebdd;
+}
+
+
+/* ========================================
+   Form Group
+======================================== */
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+
+.form-group label {
+    display: block;
+
+    color: #303b4d;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+}
+
+
+/* ========================================
+   Input
+======================================== */
+
+.input-wrapper {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+.input-icon {
+    position: absolute;
+
+    left: 14px;
+
+    color: #8a95a5;
+
+    font-size: 15px;
+
+    pointer-events: none;
+}
+
+
+.input-wrapper input {
+    width: 100%;
+
+    height: 46px;
+
+    border:
+        1px solid #dce2e8;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    padding:
+        0 45px
+        0 42px;
+
+    color: #172033;
+
+    background: #ffffff;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.input-wrapper input::placeholder {
+    color: #a0a9b7;
+}
+
+
+.input-wrapper input:focus {
+    border-color: #087f5b;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(8, 127, 91, 0.08);
+}
+
+
+/* ========================================
+   Password Toggle
+======================================== */
+
+.password-toggle {
+    position: absolute;
+
+    right: 9px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+}
+
+
+.password-toggle:hover {
+    background: #f2f6f4;
+}
+
+
+/* ========================================
+   Terms
+======================================== */
+
+.terms-row {
+    margin-top: 3px;
+
+    margin-bottom: 20px;
+}
+
+
+.checkbox-label {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    color: #737e8f;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    cursor: pointer;
+}
+
+
+.checkbox-label input {
+    width: 15px;
+    height: 15px;
+
+    margin-top: 3px;
+
+    flex-shrink: 0;
+
+    accent-color: #087f5b;
+
+    cursor: pointer;
+}
+
+
+.checkbox-label a {
+    color: #087f5b;
+
+    font-weight: 600;
+}
+
+
+.checkbox-label a:hover {
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   Signup Button
+======================================== */
+
+.signup-button {
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #087f5b;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+}
+
+
+.signup-button:hover {
+    background: #066b4d;
+
+    transform: translateY(-1px);
+}
+
+
+.signup-button:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   Spinner
+======================================== */
+
+.spinner {
+    display: none;
+
+    width: 17px;
+    height: 17px;
+
+    border:
+        2px solid
+        rgba(255, 255, 255, 0.4);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+        spin 0.7s linear infinite;
+}
+
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* ========================================
+   Divider
+======================================== */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    color: #a0a8b5;
+
+    font-size: 12px;
+
+    margin: 22px 0;
+}
+
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #e7ebef;
+}
+
+
+/* ========================================
+   Google Button
+======================================== */
+
+.google-button {
+    width: 100%;
+
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    border:
+        1px solid #dce2e8;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #303b4d;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.google-button:hover {
+    background: #f8fafc;
+
+    border-color: #cdd5de;
+}
+
+
+.google-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    color: #4285f4;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   Login Text
+======================================== */
+
+.login-text {
+    text-align: center;
+
+    color: #788395;
+
+    font-size: 12px;
+
+    margin-top: 21px;
+}
+
+
+.login-text a {
+    color: #087f5b;
+
+    font-weight: 700;
+}
+
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   Back Home
+======================================== */
+
+.back-home {
+    display: block;
+
+    text-align: center;
+
+    color: #8a94a3;
+
+    font-size: 11px;
+
+    margin-top: 18px;
+}
+
+
+.back-home:hover {
+    color: #087f5b;
+}
+
+
+/* ========================================
+   Responsive
+======================================== */
+
+@media (max-width: 900px) {
+
+    .auth-container {
+        grid-template-columns: 1fr;
+
+        max-width: 540px;
+    }
+
+
+    .auth-info {
+        min-height: 380px;
+
+        padding: 35px;
+    }
+
+
+    .info-content {
+        margin-top: 55px;
+
+        margin-bottom: 0;
+    }
+
+
+    .auth-form-section {
+        padding: 45px 40px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .auth-page {
+        padding: 0;
+    }
+
+
+    .auth-container {
+        min-height: 100vh;
+
+        border-radius: 0;
+
+        box-shadow: none;
+    }
+
+
+    .auth-info {
+        min-height: 320px;
+
+        padding: 28px 22px;
+    }
+
+
+    .info-content {
+        margin-top: 40px;
+    }
+
+
+    .info-content h1 {
+        font-size: 29px;
+    }
+
+
+    .benefits {
+        gap: 9px;
+
+        margin-bottom: 0;
+    }
+
+
+    .benefit {
+        font-size: 12px;
+    }
+
+
+    .arabic-example {
+        display: none;
+    }
+
+
+    .auth-form-section {
+        padding: 35px 22px;
+    }
+
+
+    .form-header h2 {
+        font-size: 26px;
+    }
+
+}

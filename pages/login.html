@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="আরবি শিখি - আপনার অ্যাকাউন্টে লগইন করুন">
+
+    <title>লগইন — আরবি শিখি</title>
+
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         Main Login Container
+    ========================== -->
+
+    <main class="auth-page">
+
+        <div class="auth-container">
+
+            <!-- =========================
+                 Left Side
+            ========================== -->
+
+            <section class="auth-info">
+
+                <a href="../index.html" class="brand">
+
+                    <span class="brand-arabic">
+                        عربي
+                    </span>
+
+                    <span class="brand-name">
+                        আরবি শিখি
+                    </span>
+
+                </a>
+
+
+                <div class="info-content">
+
+                    <span class="info-badge">
+                        🇧🇩 বাংলাভাষীদের জন্য
+                    </span>
+
+                    <h1>
+                        আবার শেখা শুরু করুন
+                    </h1>
+
+                    <p>
+                        আপনার অ্যাকাউন্টে লগইন করে
+                        যেখানে শেষ করেছিলেন সেখান থেকেই
+                        আরবি শেখা চালিয়ে যান।
+                    </p>
+
+
+                    <div class="arabic-example">
+
+                        <div class="example-label">
+                            আজকের অনুপ্রেরণা
+                        </div>
+
+                        <div class="example-arabic">
+                            اَلْعِلْمُ نُورٌ
+                        </div>
+
+                        <div class="example-pronunciation">
+                            উচ্চারণ: আল-ইলমু নূরুন
+                        </div>
+
+                        <div class="example-meaning">
+                            জ্ঞান হলো আলো।
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 Right Side - Login Form
+            ========================== -->
+
+            <section class="auth-form-section">
+
+                <div class="auth-form-container">
+
+                    <div class="form-header">
+
+                        <h2>
+                            স্বাগতম! 👋
+                        </h2>
+
+                        <p>
+                            আপনার অ্যাকাউন্টে লগইন করুন
+                        </p>
+
+                    </div>
+
+
+                    <!-- Error Message -->
+
+                    <div id="login-error"
+                         class="message error-message"
+                         role="alert">
+                    </div>
+
+
+                    <!-- Success Message -->
+
+                    <div id="login-success"
+                         class="message success-message"
+                         role="status">
+                    </div>
+
+
+                    <!-- Login Form -->
+
+                    <form id="login-form">
+
+                        <!-- Email -->
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                ইমেইল
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    ✉
+                                </span>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="আপনার ইমেইল লিখুন"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Password -->
+
+                        <div class="form-group">
+
+                            <div class="password-label">
+
+                                <label for="password">
+                                    পাসওয়ার্ড
+                                </label>
+
+                                <a href="#"
+                                   id="forgot-password">
+                                    পাসওয়ার্ড ভুলে গেছেন?
+                                </a>
+
+                            </div>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🔒
+                                </span>
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="আপনার পাসওয়ার্ড লিখুন"
+                                    autocomplete="current-password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    id="toggle-password"
+                                    class="password-toggle"
+                                    aria-label="পাসওয়ার্ড দেখুন">
+                                    👁
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Remember Me -->
+
+                        <div class="remember-row">
+
+                            <label class="checkbox-label">
+
+                                <input
+                                    type="checkbox"
+                                    id="remember-me"
+                                    name="remember-me"
+                                >
+
+                                <span>
+                                    আমাকে মনে রাখুন
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- Login Button -->
+
+                        <button
+                            type="submit"
+                            id="login-button"
+                            class="login-button">
+
+                            <span id="login-button-text">
+                                লগইন করুন
+                            </span>
+
+                            <span
+                                id="login-spinner"
+                                class="spinner">
+                            </span>
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- Divider -->
+
+                    <div class="divider">
+
+                        <span>অথবা</span>
+
+                    </div>
+
+
+                    <!-- Google Login -->
+
+                    <button
+                        type="button"
+                        id="google-login"
+                        class="google-button">
+
+                        <span class="google-icon">
+                            G
+                        </span>
+
+                        Google দিয়ে লগইন করুন
+
+                    </button>
+
+
+                    <!-- Signup -->
+
+                    <p class="signup-text">
+
+                        আপনার কি অ্যাকাউন্ট নেই?
+
+                        <a href="signup.html">
+                            নতুন অ্যাকাউন্ট তৈরি করুন
+                        </a>
+
+                    </p>
+
+
+                    <!-- Back Home -->
+
+                    <a href="../index.html"
+                       class="back-home">
+
+                        ← হোম পেজে ফিরে যান
+
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         Login JavaScript
+         Firebase will be added later
+    ========================== -->
+<script type="module" src="../js/auth.js"></script>
+
+</body>
+
+</html>
