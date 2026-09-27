@@ -145,6 +145,15 @@
                 <div class="category-page-grid"
                      id="categoryGrid">
 
+                     <!-- // Firebase container -->
+                      <section
+                        class="categories-container"
+                        id="categories-container">
+
+                        <!-- Firebase categories appear here -->
+
+                    </section>
+
 
                     <!-- Daily Conversation -->
 
@@ -710,69 +719,9 @@
 
 
 
-    <!-- =================================
-         Category Search
-    ================================== -->
 
-    <script>
-
-        const searchInput =
-            document.getElementById("categorySearch");
-
-        const categoryCards =
-            document.querySelectorAll(".large-category-card");
-
-        const noResults =
-            document.getElementById("noResults");
-
-
-        searchInput.addEventListener("input", function () {
-
-            const searchValue =
-                this.value.toLowerCase().trim();
-
-            let visibleCards = 0;
-
-
-            categoryCards.forEach(function (card) {
-
-                const categoryName =
-                    card.dataset.category.toLowerCase();
-
-                const cardText =
-                    card.innerText.toLowerCase();
-
-
-                if (
-                    categoryName.includes(searchValue) ||
-                    cardText.includes(searchValue)
-                ) {
-
-                    card.style.display = "grid";
-                    visibleCards++;
-
-                } else {
-
-                    card.style.display = "none";
-
-                }
-
-            });
-
-
-            if (visibleCards === 0) {
-
-                noResults.style.display = "block";
-
-            } else {
-
-                noResults.style.display = "none";
-
-            }
-
-        });
-
-    </script>
+<script type="module" src="../js/categories.js"></script>
+   
 
 </body>
 

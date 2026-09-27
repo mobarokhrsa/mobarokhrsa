@@ -127,6 +127,19 @@ button {
 }
 
 
+.nav-links .logout {
+    color: #ffffff;
+    background: #087f5b;
+    padding: 9px 18px;
+    border-radius: 8px;
+}
+
+.nav-links .logout:hover {
+    background: #066b4d;
+    color: #ffffff;
+}
+
+
 .menu-button {
     display: none;
     border: none;

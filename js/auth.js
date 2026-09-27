@@ -17,9 +17,18 @@ import {
     "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
+
+
+// for create user in firestore autometic
+import {
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
 // Import Firebase Auth instance
 
-import { auth } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 
 
 // ========================================
@@ -203,6 +212,15 @@ if (signupForm) {
 
                 const user =
                     userCredential.user;
+                
+                //For create the Firestore user document:
+                await setDoc(doc(db, "users", user.uid), {
+                    displayName: name,
+                    email: user.email,
+                    createdAt: serverTimestamp()
+                });
+
+
 
 
                 // Save display name
@@ -357,6 +375,8 @@ const googleLoginButton =
 
 const googleSignupButton =
     document.getElementById("google-signup");
+
+
 
 
 async function loginWithGoogle() {
@@ -540,6 +560,12 @@ onAuthStateChanged(
     auth,
     (user) => {
 
+        const currentPage = window.location.pathname;
+
+        if (currentPage.includes("flashcards.html") && !user) {
+            window.location.href = "login.html";
+        }
+
         if (user) {
 
             console.log(
@@ -573,22 +599,22 @@ onAuthStateChanged(
 // LOGOUT FUNCTION
 // ========================================
 
-export async function logoutUser() {
 
+const logoutBtn = document.getElementById("logoutBtn");
+
+async function logout() {
     try {
-
         await signOut(auth);
 
-        window.location.href =
-            "login.html";
+        // Send user back to login page
+        window.location.href = "../pages/login.html";
 
     } catch (error) {
-
-        console.error(
-            "Logout error:",
-            error
-        );
-
+        console.error("Logout error:", error);
+        alert("Failed to logout. Please try again.");
     }
+}
 
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", logout);
 }

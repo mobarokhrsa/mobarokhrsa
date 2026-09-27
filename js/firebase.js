@@ -13,6 +13,12 @@ import { getAuth, GoogleAuthProvider } from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
+import {
+    getFirestore
+} from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
@@ -41,4 +47,5 @@ const googleProvider = new GoogleAuthProvider();
 // Export 
 export {app, auth, googleProvider};
 
+export const db = getFirestore(app);
 
